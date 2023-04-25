@@ -7,7 +7,7 @@ print('AppEngine Version: ' .. Engine.getVersion())
 local DELAY = 1000
 
 -- Creating viewer
-local viewer = View.create('viewer2D1')
+local viewer = View.create()
 
 -- Setting up graphical overlay attributes
 local decoration = View.PixelRegionDecoration.create()
@@ -42,10 +42,8 @@ local function main()
 
   -- Visualizing all DIN-rail nuts
   viewer:clear()
-  local imageID = viewer:addImage(img)
-  for _, blob in ipairs(holeblobs) do
-    viewer:addPixelRegion(blob, decoration, nil, imageID)
-  end
+  viewer:addImage(img)
+  viewer:addPixelRegion(holeblobs, decoration)
   viewer:present()
 
   print(#holeblobs .. ' DIN-rail nuts found')
